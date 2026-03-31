@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6f0e7;
+  --foreground: #000000;
+  --font-ui:
+    "Avenir Next", "Segoe UI", "Helvetica Neue", "Arial Nova", sans-serif;
+  --font-display:
+    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --font-code:
+    "SFMono-Regular", "JetBrains Mono", "IBM Plex Mono", "Fira Code",
+    monospace;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-ui);
+  --font-mono: var(--font-code);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(13, 148, 136, 0.12), transparent 28%),
+    radial-gradient(circle at top right, rgba(245, 158, 11, 0.1), transparent 24%),
+    linear-gradient(180deg, #fbf8f3 0%, #f1eadf 100%);
+  color: var(--foreground);
+  font-family: var(--font-ui);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: rgba(20, 184, 166, 0.18);
+  color: #000000;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
