@@ -4,13 +4,13 @@ import { PageShell } from "@/components/page-shell";
 import { ProjectPreview } from "@/components/project-preview";
 import { Reveal } from "@/components/reveal";
 import { StackGame } from "@/components/stack-game";
-import { blogPosts, formatBlogDate } from "@/lib/blog-data";
+import { formatBlogDate, getAllPosts } from "@/lib/blog";
 import { portfolioData } from "@/lib/portfolio-data";
 
 export default function Home() {
   const { person, home, projects, experience, impactMetrics } = portfolioData;
   const featured = home.featured.flatMap((slug) => projects.filter((project) => project.slug === slug));
-  const latestPost = blogPosts[0];
+  const latestPost = getAllPosts()[0];
 
   return (
     <PageShell>
@@ -59,7 +59,7 @@ export default function Home() {
       {latestPost && <Reveal>
         <section className="home-blog">
           <div><p className="eyebrow">From the notebook</p><h2>The thinking behind the work.</h2><p>Build notes on the systems, details, and decisions that don&apos;t fit inside a project screenshot.</p><Link href="/blog" className="text-link">Explore the blog<Arrow diagonal /></Link></div>
-          <Link href={`/blog/${latestPost.slug}`} className="home-blog-card"><span className="eyebrow">Latest note <span aria-hidden="true">/</span> {formatBlogDate(latestPost.publishedAt)}</span><h3>{latestPost.title}</h3><span>Read the note <Arrow diagonal /></span></Link>
+          <Link href={`/blog/${latestPost.slug}`} className="home-blog-card"><span className="eyebrow">Latest note <span aria-hidden="true">/</span> {formatBlogDate(latestPost.date)}</span><h3>{latestPost.title}</h3><p>{latestPost.description}</p><span>Read the note <Arrow diagonal /></span></Link>
         </section>
       </Reveal>}
     </PageShell>

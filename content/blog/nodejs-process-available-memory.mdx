@@ -1,0 +1,54 @@
+---
+title: "Checking Memory Before Heavy Work in Node.js"
+description: "Use process.availableMemory() as a signal for choosing smaller batches in backend jobs."
+slug: "nodejs-process-available-memory"
+date: "2026-10-12T21:00:00+05:30"
+category: "Backend notes"
+tags: ["Node.js", "JavaScript", "Backend Development"]
+---
+
+A backend job can work well with a small CSV and struggle when the input grows. Loading more rows, creating objects, and processing several tasks together all require memory. One useful signal when deciding how much work to start is `process.availableMemory()`.
+
+## What does it do?
+
+This built-in function reports free memory still available to the process, in bytes. It was added in Node.js 20.13.0 and 22.0.0, and became stable in Node.js 22.16.0 and 24.0.0.
+
+Think of RAM as a desk where you work on documents. A crowded desk gives you a reason to handle fewer documents at once. Disk storage is the filing cabinet; checking RAM and checking disk space answer different questions.
+
+## A small example
+
+Save this as `memory-check.mjs` and run `node memory-check.mjs`:
+
+```js
+import { availableMemory } from 'node:process';
+
+const MiB = 1024 * 1024;
+const freeBytes = availableMemory();
+
+// Illustrative threshold; tune it for your workload.
+const batchSize = freeBytes < 256 * MiB ? 100 : 500;
+
+console.log(`Available memory: ${Math.floor(freeBytes / MiB)} MiB`);
+console.log(`Suggested batch size: ${batchSize}`);
+```
+
+The script takes a snapshot of available memory and chooses a batch size. It does not allocate a batch or process a CSV itself.
+
+## Where can I use it?
+
+Imagine a CSV import worker that validates rows and writes them to PostgreSQL. Before reading the next batch, it could use this signal to choose fewer rows when memory is tight.
+
+The same idea can inform image-processing concurrency or how many background jobs a worker starts together. These are design examples, rather than guarantees that a particular threshold is appropriate.
+
+For a CSV importer, combine the signal with streaming input and a fixed maximum batch size. Measure the actual cost of your rows: a hundred short records can use very different amounts of memory from a hundred records containing large text fields.
+
+## The common pitfall
+
+Available memory is a changing snapshot. Another task can consume memory after the check, and V8's JavaScript heap limit can still restrict allocations. The result is not a promise that your next operation will succeed.
+
+Use it to guide workload decisions, while keeping streaming, bounded concurrency, monitoring, and failure handling in place.
+
+[Official Node.js documentation: process.availableMemory()](https://nodejs.org/api/process.html#processavailablememory)
+
+Documentation checked on October 12, 2026.
+

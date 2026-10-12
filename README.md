@@ -23,8 +23,10 @@ Then open `http://localhost:3000`.
 
 - `app/page.tsx`: portfolio home page
 - `lib/portfolio-data.ts`: shared profile, experience, skills, and project data
-- `lib/blog-data.ts`: published blog posts and article content
-- `app/blog/`: blog index and article route
+- `content/blog/*.mdx`: blog posts (see `content/blog/README.md` for frontmatter and supported blocks)
+- `lib/blog.ts` / `lib/mdx.tsx`: post loading and MDX rendering
+- `components/mdx/`: components available inside posts (code, diagrams, images, video, embeds, callouts)
+- `app/blog/`: blog index, article, tag pages, RSS feed, and per-post social images
 - `app/api/profile/route.ts`: structured profile JSON
 - `app/api/projects/route.ts`: project JSON feed
 - `public/resume/kushagra-rohatgi-resume.pdf`: downloadable resume
@@ -33,7 +35,7 @@ Then open `http://localhost:3000`.
 
 - The Vercel production environment sets `NEXT_PUBLIC_SITE_URL` to `https://portfolio.kushagraportfolio.cloud`. Keep this value aligned with the public domain so canonical, Open Graph, robots, and sitemap URLs stay consistent. Without the override, the site uses Vercel's production domain automatically.
 - Add new project case studies by extending `lib/portfolio-data.ts`.
-- Add a post in `lib/blog-data.ts` with a unique slug, publication date, description, lead, and sections. The blog index, article route, metadata, and sitemap update from that entry when the next commit is deployed. Only add finished posts to this published list.
+- Add a post by creating `content/blog/<slug>.mdx`. The blog index, tag pages, RSS feed (`/blog/rss.xml`), sitemap, and social image update on the next deploy. Set `draft: true` to preview in `npm run dev` without publishing. Put post media in `public/blog/<slug>/`.
 
 ## Search indexing
 

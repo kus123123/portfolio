@@ -1,0 +1,52 @@
+---
+title: "MDX reference — every block"
+description: "A draft that exercises every component the blog supports."
+date: "2026-10-12"
+tags: ["Reference"]
+draft: true
+---
+
+Intro paragraph with a [link to the docs](https://nodejs.org/api/process.html), an [internal link](/projects), and `inline code`.
+
+## Code
+
+```ts title="lib/queue.ts" {2}
+export async function run(batch: number[]) {
+  const results = await Promise.all(batch.map(work));
+  return results.filter(Boolean);
+}
+```
+
+## Diagram
+
+```mermaid
+flowchart LR
+  A[CSV upload] --> B{Memory OK?}
+  B -- yes --> C[Batch of 500]
+  B -- no --> D[Batch of 100]
+  C --> E[(PostgreSQL)]
+  D --> E
+```
+
+## Media
+
+![A placeholder project image](/projects/placeholder.svg "Markdown image with a caption")
+
+<YouTube id="aqz-KE-bpKQ" title="Big Buck Bunny (sample video)" caption="YouTube via the privacy-enhanced domain" />
+
+<Embed src="https://www.openstreetmap.org/export/embed.html?bbox=77.30%2C28.52%2C77.42%2C28.62&layer=mapnik" title="Map of Noida" aspect="4 / 3" caption="Generic iframe embed" />
+
+## Callouts and tables
+
+<Callout type="warning">
+Available memory is a snapshot, not a promise.
+</Callout>
+
+<Callout type="tip" title="Rule of thumb">
+Stream first, batch second.
+</Callout>
+
+| Free memory | Batch size |
+| --- | ---: |
+| < 256 MiB | 100 |
+| ≥ 256 MiB | 500 |
