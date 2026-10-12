@@ -1,182 +1,58 @@
 import Link from "next/link";
-import { PageIntro } from "@/components/page-intro";
+import { Arrow, Spark } from "@/components/icons";
 import { PageShell } from "@/components/page-shell";
-import { Tag } from "@/components/tag";
+import { ProjectPreview } from "@/components/project-preview";
+import { Reveal } from "@/components/reveal";
+import { StackGame } from "@/components/stack-game";
 import { portfolioData } from "@/lib/portfolio-data";
 
 export default function Home() {
-  const { person, impactMetrics, projects, experience, principles } = portfolioData;
-  const featuredProjects = projects.slice(0, 2);
-  const currentExperience = experience[0];
+  const { person, home, projects, experience, impactMetrics } = portfolioData;
+  const featured = home.featured.flatMap((slug) => projects.filter((project) => project.slug === slug));
 
   return (
     <PageShell>
-      <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="rounded-[2rem] border border-slate-200/80 bg-white/92 p-8 shadow-[0_20px_70px_rgba(15,23,42,0.08)]">
-          <PageIntro
-            eyebrow={person.status}
-            title={person.lead}
-            description={person.summary}
-          />
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a
-              href={person.resumeUrl}
-              download
-              className="inline-flex items-center justify-center rounded-full bg-teal-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-800"
-            >
-              Download resume
-            </a>
-            <Link
-              href="/projects"
-              className="inline-flex items-center justify-center rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-black transition hover:border-slate-300 hover:bg-slate-50"
-            >
-              View projects
-            </Link>
-            <a
-              href={`mailto:${person.email}`}
-              className="inline-flex items-center justify-center rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-black transition hover:border-slate-300 hover:bg-slate-50"
-            >
-              Contact me
-            </a>
-          </div>
+      <section className="hero">
+        <div className="hero-copy">
+          <p className="eyebrow hero-eyebrow"><span className="status-dot" />{person.displayRole} <span className="eyebrow-separator">/</span> {person.location}</p>
+          <h1 className="hero-title"><span>{home.headline[0]}</span><span className="accent">{home.headline[1]}</span><span>{home.headline[2]}<svg className="hero-scribble" viewBox="0 0 90 80" aria-hidden="true"><path d="m10 34 30 9M30 8l17 25M63 5l-2 26" /></svg></span></h1>
+          <p className="hero-description">{person.introduction}</p>
+          <div className="hero-actions"><a className="button button-primary" href="#work">Explore my work<Arrow diagonal /></a><a className="text-link" href={person.resumeUrl} download>Download resume<Arrow diagonal /></a></div>
         </div>
-
-        <aside className="rounded-[2rem] border border-amber-200/80 bg-[linear-gradient(180deg,rgba(255,251,235,0.95),rgba(255,247,237,0.92))] p-8 shadow-[0_20px_60px_rgba(148,163,184,0.12)]">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/70">
-            Current Focus
-          </p>
-          <h2 className="mt-4 font-display text-3xl text-black">
-            {person.currentFocus}
-          </h2>
-          <div className="mt-6 space-y-4">
-            {principles.map((principle) => (
-              <div
-                key={principle.title}
-                className="rounded-[1.5rem] border border-white/70 bg-white/85 p-5"
-              >
-                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-black/65">
-                  {principle.title}
-                </p>
-                <p className="mt-3 text-base leading-7 text-black/85">
-                  {principle.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </aside>
+        <div className="hero-play"><StackGame /></div>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-3">
-        {impactMetrics.map((metric) => (
-          <article
-            key={metric.label}
-            className="rounded-[1.75rem] border border-slate-200/80 bg-white/88 p-6 shadow-[0_18px_50px_rgba(15,23,42,0.06)]"
-          >
-            <p className="font-display text-4xl text-black">{metric.value}</p>
-            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.3em] text-black/70">
-              {metric.label}
-            </p>
-            <p className="mt-3 text-sm leading-7 text-black/80">{metric.detail}</p>
-          </article>
-        ))}
-      </section>
+      <div className="stack-strip"><p>From the first click to the last query.</p><div>{home.stackLine.map((item) => <span key={item}>{item}</span>)}</div></div>
 
-      <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="rounded-[2rem] border border-slate-200/80 bg-white/92 p-8 shadow-[0_20px_70px_rgba(15,23,42,0.08)]">
-          <div className="flex items-end justify-between gap-4 border-b border-slate-100 pb-6">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/70">
-                Featured Projects
-              </p>
-              <h2 className="mt-3 font-display text-3xl text-black">
-                Selected backend work
-              </h2>
-            </div>
-            <Link
-              href="/projects"
-              className="text-sm font-semibold text-black/80 transition hover:text-black"
-            >
-              See all
-            </Link>
-          </div>
-          <div className="mt-6 grid gap-5">
-            {featuredProjects.map((project) => (
-              <article
-                key={project.name}
-                className="rounded-[1.5rem] border border-slate-200/80 bg-slate-50/85 p-5"
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/65">
-                  {project.type}
-                </p>
-                <h3 className="mt-3 font-display text-2xl text-black">
-                  {project.name}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-black/80">
-                  {project.summary}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.stack.map((item) => (
-                    <Tag key={item} label={item} />
-                  ))}
-                </div>
+      <section id="work" className="work-section">
+        <Reveal><div className="section-heading"><div><p className="eyebrow">Selected work / 01&ndash;04</p><h2>{home.workTitle}</h2></div><Link className="text-link" href="/projects">View all projects<Arrow diagonal /></Link></div></Reveal>
+        <div className="featured-grid">
+          {featured.map((project, index) => (
+            <Reveal key={project.slug} className="project-showcase">
+              <article>
+                <Link href={`/projects#${project.slug}`} className="preview-link" aria-label={`Explore ${project.name}`}><ProjectPreview project={project} /><span className="preview-open"><Arrow diagonal /></span></Link>
+                <div className="project-caption"><span className="project-index">0{index + 1}</span><div><Link href={`/projects#${project.slug}`}><h3>{project.name}</h3></Link><p>{project.shortDescription}</p></div><Link href={`/projects#${project.slug}`} className="project-arrow" aria-label={`Read about ${project.name}`}><Arrow diagonal /></Link></div>
+                <p className="project-tools">{project.stack.slice(0, 3).join(" / ")}</p>
               </article>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid gap-6">
-          <article className="rounded-[2rem] border border-slate-200/80 bg-white/92 p-8 shadow-[0_20px_70px_rgba(15,23,42,0.08)]">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/70">
-              Experience Snapshot
-            </p>
-            <h2 className="mt-3 font-display text-3xl text-black">
-              {currentExperience.role} at {currentExperience.company}
-            </h2>
-            <p className="mt-3 text-sm text-black/70">
-              {currentExperience.period} · {currentExperience.location}
-            </p>
-            <div className="mt-6 space-y-3">
-              {currentExperience.highlights.slice(0, 3).map((highlight) => (
-                <div
-                  key={highlight}
-                  className="rounded-[1.3rem] border border-slate-200/80 bg-slate-50/85 px-4 py-3 text-sm leading-7 text-black/80"
-                >
-                  {highlight}
-                </div>
-              ))}
-            </div>
-            <Link
-              href="/experience"
-              className="mt-6 inline-flex text-sm font-semibold text-black/80 transition hover:text-black"
-            >
-              View full timeline
-            </Link>
-          </article>
-
-          <article className="rounded-[2rem] border border-slate-200/80 bg-[linear-gradient(180deg,rgba(240,253,250,0.92),rgba(248,250,252,0.96))] p-8 shadow-[0_20px_60px_rgba(45,212,191,0.08)]">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/70">
-              Stack Snapshot
-            </p>
-            <h2 className="mt-3 font-display text-3xl text-black">
-              Core tools I reach for
-            </h2>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {portfolioData.skillGroups
-                .slice(0, 3)
-                .flatMap((group) => group.items.slice(0, 3))
-                .map((item) => (
-                  <Tag key={item} label={item} />
-                ))}
-            </div>
-            <Link
-              href="/about"
-              className="mt-6 inline-flex text-sm font-semibold text-black/80 transition hover:text-black"
-            >
-              Learn more about my approach
-            </Link>
-          </article>
+            </Reveal>
+          ))}
         </div>
       </section>
+
+      <Reveal>
+        <section className="approach-section">
+          <div className="approach-heading"><p className="eyebrow">The way I build</p><h2>{home.approachTitle}</h2><Spark className="approach-spark" /></div>
+          <div className="approach-copy"><p>{home.approachDescription}</p><p>{person.currentFocus}</p><Link className="text-link" href="/about">A bit more about me<Arrow diagonal /></Link></div>
+          <div className="impact-row">{impactMetrics.map((metric) => <div key={metric.label}><strong>{metric.value}</strong><span>{metric.label}</span></div>)}</div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="home-experience">
+          <div className="section-heading"><div><p className="eyebrow">Where I&apos;ve made an impact</p><h2>A few chapters.</h2></div><Link className="text-link" href="/experience">The full story<Arrow diagonal /></Link></div>
+          <div>{experience.map((item, i) => <Link href="/experience" key={item.company} className="experience-preview"><span className="project-index">0{i + 1}</span><h3>{item.company}</h3><span>{item.role}</span><span className="experience-period">{item.period}</span><Arrow diagonal /></Link>)}</div>
+        </section>
+      </Reveal>
     </PageShell>
   );
 }

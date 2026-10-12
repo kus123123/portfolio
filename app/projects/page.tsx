@@ -1,75 +1,34 @@
 import type { Metadata } from "next";
+import { Arrow } from "@/components/icons";
 import { PageIntro } from "@/components/page-intro";
 import { PageShell } from "@/components/page-shell";
+import { ProjectPreview } from "@/components/project-preview";
+import { Reveal } from "@/components/reveal";
 import { Tag } from "@/components/tag";
 import { portfolioData } from "@/lib/portfolio-data";
 
-export const metadata: Metadata = {
-  title: "Projects",
-  description:
-    "Selected backend, AI, and platform projects by Kushagra Rohatgi.",
-};
+export const metadata: Metadata = { title: "Work", description: "Products, experiments, APIs, and automations built by Kushagra Rohatgi.", alternates: { canonical: "/projects" } };
 
 export default function ProjectsPage() {
-  const { projects } = portfolioData;
-
   return (
     <PageShell>
-      <section className="rounded-[2rem] border border-slate-200/80 bg-white/92 p-8 shadow-[0_20px_70px_rgba(15,23,42,0.08)]">
-        <PageIntro
-          eyebrow="Projects"
-          title="Case studies focused on API design, infrastructure, and production outcomes"
-          description="These projects are written to be easy to scan: what the product did, what backend problem it solved, and why the implementation mattered."
-        />
-      </section>
-
-      <div className="grid gap-6">
-        {projects.map((project) => (
-          <article
-            key={project.name}
-            className="rounded-[2rem] border border-slate-200/80 bg-white/92 p-8 shadow-[0_20px_70px_rgba(15,23,42,0.08)]"
-          >
-            <div className="flex flex-col gap-4 border-b border-slate-100 pb-6 md:flex-row md:items-start md:justify-between">
-              <div className="max-w-3xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-black/70">
-                  {project.type}
-                </p>
-                <h2 className="mt-3 font-display text-4xl text-black">
-                  {project.name}
-                </h2>
+      <PageIntro eyebrow="Selected work / The collection" title="Ideas turned into things that work." description="Browser tools, AI products, reliable APIs, and a few useful automations. Here's what I've been building." />
+      <nav className="project-jump-links" aria-label="Jump to a project">{portfolioData.projects.map((project, index) => <a key={project.slug} href={`#${project.slug}`}><span>0{index + 1}</span>{project.name}</a>)}</nav>
+      <div className="project-collection">
+        {portfolioData.projects.map((project, index) => (
+          <Reveal key={project.slug}>
+            <article id={project.slug} className="project-case">
+              <ProjectPreview project={project} />
+              <div className="case-copy"><p className="eyebrow">0{index + 1} / {project.type}</p><h2>{project.name}</h2><p className="case-intro">{project.shortDescription}</p><p>{project.summary}</p>
+                <div className="tag-list">{project.stack.map((item) => <Tag key={item} label={item} />)}</div>
+                <details className="case-details"><summary>Behind the build<span aria-hidden="true">+</span></summary><p>{project.outcome}</p></details>
+                <div className="case-links">
+                  {project.liveUrl && <a className="button button-primary button-small" href={project.liveUrl} target="_blank" rel="noreferrer">Visit project<Arrow diagonal /></a>}
+                  {project.repoUrl && <a className="text-link" href={project.repoUrl} target="_blank" rel="noreferrer">View source<Arrow diagonal /></a>}
+                </div>
               </div>
-              {project.liveUrl ? (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex w-fit rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-black transition hover:border-slate-300 hover:bg-slate-50"
-                >
-                  Visit live project
-                </a>
-              ) : null}
-            </div>
-
-            <div className="mt-6 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-              <div>
-                <p className="text-base leading-8 text-black/80">{project.summary}</p>
-              </div>
-              <div className="rounded-[1.5rem] border border-teal-100 bg-teal-50/80 p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/70">
-                  Outcome
-                </p>
-                <p className="mt-3 text-sm leading-7 text-black/85">
-                  {project.outcome}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              {project.stack.map((item) => (
-                <Tag key={item} label={item} />
-              ))}
-            </div>
-          </article>
+            </article>
+          </Reveal>
         ))}
       </div>
     </PageShell>

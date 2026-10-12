@@ -1,6 +1,8 @@
 export const portfolioData = {
   person: {
     name: "Kushagra Rohatgi",
+    displayRole: "Full-stack developer",
+    introduction: "I'm Kushagra. I build thoughtful interfaces, reliable APIs, and the systems connecting them.",
     role: "Senior Backend Developer",
     lead: "I build backend systems that stay reliable, readable, and fast as products scale.",
     currentFocus:
@@ -14,6 +16,14 @@ export const portfolioData = {
     summary:
       "I design backend systems around clean API contracts, secure authentication, low-latency data access, and operational clarity. My work spans Node.js, TypeScript, PostgreSQL, Redis, cloud automation, real-time systems, and AI retrieval pipelines.",
     codeSnippet: `const backendProfile = {\n  runtime: [\"Node.js\", \"TypeScript\", \"Express\"],\n  data: [\"PostgreSQL\", \"Redis\", \"MongoDB\", \"Cosmos DB\"],\n  auth: [\"AWS Cognito\", \"JWT\", \"RBAC\"],\n  cloud: [\"Azure\", \"Docker\", \"Ansible\", \"GitHub Actions\"],\n  ai: [\"RAG\", \"OpenAI APIs\", \"Vector Search\"],\n  principle: \"make the system easier to reason about before making it clever\"\n};`,
+  },
+  home: {
+    headline: ["Built to feel good.", "Engineered", "to last."],
+    workTitle: "Things I've shipped.",
+    approachTitle: "Good on the surface. Solid underneath.",
+    approachDescription: "From a useful browser extension to a production API, I care about the whole experience: how it feels, how it works, and how it holds up.",
+    stackLine: ["React / Next.js", "Node.js / TypeScript", "APIs / Data / AI"],
+    featured: ["chatbot", "qr-contact-locker", "linkedin-automation", "notepad"],
   },
   navigation: [
     { label: "Home", href: "/" },
@@ -95,9 +105,121 @@ export const portfolioData = {
   ],
   projects: [
     {
+      name: "QR Contact Locker",
+      slug: "qr-contact-locker",
+      shortDescription: "One scan. A simpler way to share a contact.",
+      tone: "butter",
+      previewKind: "screenshot",
+      type: "QR Contact Workflow App",
+      liveUrl: "https://qr.kushagraproject.xyz",
+      repoUrl: "https://github.com/kus123123/qrcode-contact-form-generator",
+      imageUrl: "/projects/qr-contact-locker.png",
+      imageAlt: "QR Contact Locker product interface screenshot",
+      summary:
+        "Built a QR-driven contact sharing app where contacts are created from an admin screen, shared via QR, and locked into read-only mode after the first save. The app is backed by Postgres and structured for server deployment.",
+      outcome:
+        "Turned a one-scan contact flow into a deployable product with Postgres-backed persistence, lock-after-save behavior, and Docker-friendly deployment.",
+      stack: ["JavaScript", "Postgres", "QR Code", "HTML", "Docker"],
+    },
+    {
+      name: "Chatbot",
+      slug: "chatbot",
+      shortDescription: "Conversations with context. Answers grounded in your files.",
+      tone: "apricot",
+      previewKind: "screenshot",
+      type: "Full-Stack AI Chat App",
+      liveUrl: "https://kushagraproject.xyz/",
+      repoUrl: "https://github.com/kus123123/chatbot",
+      imageUrl: "/projects/chatbot.png",
+      imageAlt: "Chatbot application screenshot",
+      summary:
+        "Built a Node and React chatbot with Express APIs, Gemini-powered file search, and Firebase-backed chat persistence to support interactive, file-aware conversations.",
+      outcome:
+        "Delivered a full-stack chatbot experience with persisted chat history, file-search capability, and a production-facing frontend deployment.",
+      stack: ["Node.js", "React", "Express", "Gemini API", "Firebase", "Vite"],
+    },
+    {
+      name: "LinkedIn Automation with n8n",
+      slug: "linkedin-automation",
+      shortDescription: "From a fresh idea to a published post. Automatically.",
+      tone: "mint",
+      previewKind: "workflow",
+      type: "AI Content and Posting Automation",
+      liveUrl: null,
+      repoUrl: null,
+      imageUrl: "/projects/linkedin-n8n.svg",
+      imageAlt: "LinkedIn automation workflow preview in n8n",
+      summary:
+        "Built an n8n workflow that schedules LinkedIn content generation, creates backend-focused posts with OpenRouter, parses structured output, generates supporting visuals with Gemini, and publishes directly to LinkedIn.",
+      outcome:
+        "Delivered an end-to-end content pipeline from topic/theme generation to image-backed post publishing, reducing manual drafting and posting effort while keeping technical tone consistent.",
+      stack: [
+        "n8n",
+        "OpenRouter",
+        "Gemini Image Generation",
+        "LinkedIn API",
+        "Workflow Automation",
+        "JavaScript (Code Nodes)",
+      ],
+    },
+    {
+      name: "Resume Autofill Chrome Extension",
+      slug: "resume-autofill",
+      shortDescription: "Less form filling. More time for the next opportunity.",
+      tone: "blue",
+      previewKind: "abstract",
+      type: "Chrome Extension for Job Applications",
+      liveUrl: null,
+      repoUrl: null,
+      imageUrl: "/projects/placeholder.svg",
+      imageAlt: "Resume autofill extension preview placeholder",
+      summary:
+        "Built a Chrome extension that stores a reusable application profile, learns answers from focused fields, uploads locally stored resumes, drafts open-ended responses with OpenAI, and syncs structured data through Chrome storage.",
+      outcome:
+        "Combined profile sync, heuristic field matching, local resume storage, AI-assisted drafting, and reusable form learning into a practical autofill workflow for job applications.",
+      stack: [
+        "Chrome Extension",
+        "JavaScript",
+        "chrome.storage",
+        "OpenAI API",
+        "Google Identity",
+      ],
+    },
+    {
+      name: "Notepad",
+      slug: "notepad",
+      shortDescription: "A home for your next idea, right beside your browser.",
+      tone: "blue",
+      previewKind: "notes",
+      type: "Chrome Side Panel Extension",
+      liveUrl: null,
+      repoUrl: "https://github.com/kus123123/notepad",
+      imageUrl: "/projects/notepad.avif",
+      imageAlt: "Notepad Chrome extension visual",
+      summary:
+        "Built a Chrome side-panel notepad extension with Google sign-in, per-user multi-page notes in Firestore, rich text editing, and inline flow-diagram support for quick ideation inside the browser.",
+      outcome:
+        "Shipped a persistent browser-native workspace with debounced autosave, page management, and image paste/upload so notes and diagrams stay organized without leaving active tabs.",
+      stack: [
+        "Chrome Extension (MV3)",
+        "JavaScript",
+        "HTML/CSS",
+        "Firebase Auth",
+        "Cloud Firestore",
+        "Chrome Side Panel API",
+      ],
+    },
+    {
       name: "PDF AI Helper",
+      slug: "pdf-ai-helper",
+      shortDescription: "Ask your documents. Find the answer that matters.",
+      tone: "butter",
+      previewKind: "screenshot",
       type: "Document Intelligence Platform",
       liveUrl: "https://www.pdfaihelper.com/",
+      repoUrl: null,
+      imageUrl: "/projects/pdf-ai-helper.png",
+      imageAlt: "PDF AI Helper product screenshot",
       summary:
         "Built a full-stack platform for uploading PDFs and querying them with natural language. The backend handled ingestion, extraction, semantic retrieval, vector search, and low-latency answer generation for large document sets.",
       outcome:
@@ -106,8 +228,15 @@ export const portfolioData = {
     },
     {
       name: "Data Portal - Startup Investors",
+      slug: "data-portal",
+      shortDescription: "Secure data access, built for real production traffic.",
+      tone: "mint",
+      previewKind: "abstract",
       type: "Secure Data Platform",
       liveUrl: null,
+      repoUrl: null,
+      imageUrl: "/projects/placeholder.svg",
+      imageAlt: "Secure data platform preview placeholder",
       summary:
         "Developed a secure backend with high-volume API handling, PCI-conscious payment integration, JWT-driven auth, and server-side protection strategies such as rate limiting and timeout control.",
       outcome:
@@ -116,8 +245,15 @@ export const portfolioData = {
     },
     {
       name: "Natural Language to SQL Query API",
+      slug: "natural-language-sql",
+      shortDescription: "A question in plain English. An answer from your database.",
+      tone: "apricot",
+      previewKind: "abstract",
       type: "AI Query Interface",
       liveUrl: null,
+      repoUrl: null,
+      imageUrl: "/projects/placeholder.svg",
+      imageAlt: "Natural language to SQL API preview placeholder",
       summary:
         "Built an API that translates natural language prompts into PostgreSQL queries using OpenAI, making structured data accessible to non-technical users through a backend-first interface.",
       outcome:

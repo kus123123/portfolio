@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">LinkedIn Automation n8n Workflow</title>
+  <desc id="desc">Simplified workflow preview showing scheduled AI content generation, parsing, image generation, and LinkedIn posting.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#eef2ff" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)" />
+
+  <rect x="80" y="300" width="230" height="220" rx="24" fill="#fef9c3" stroke="#facc15" stroke-width="3" />
+  <text x="195" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#1f2937">Schedule</text>
+  <text x="195" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#374151">Trigger</text>
+
+  <rect x="360" y="220" width="320" height="380" rx="24" fill="#dbeafe" stroke="#60a5fa" stroke-width="3" />
+  <text x="520" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#1f2937">AI Content</text>
+  <text x="520" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#374151">Generation</text>
+  <text x="520" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#475569">OpenRouter + Prompt</text>
+
+  <rect x="730" y="300" width="230" height="220" rx="24" fill="#fef3c7" stroke="#f59e0b" stroke-width="3" />
+  <text x="845" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#1f2937">Parse</text>
+  <text x="845" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#374151">to JSON</text>
+
+  <rect x="1010" y="260" width="300" height="300" rx="24" fill="#dcfce7" stroke="#4ade80" stroke-width="3" />
+  <text x="1160" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#1f2937">Image Gen</text>
+  <text x="1160" y="392" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#374151">Gemini via API</text>
+
+  <rect x="1360" y="300" width="190" height="220" rx="24" fill="#fef9c3" stroke="#facc15" stroke-width="3" />
+  <text x="1455" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#1f2937">LinkedIn</text>
+  <text x="1455" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#374151">Posting</text>
+
+  <path d="M310 410 L360 410" stroke="#334155" stroke-width="5" marker-end="url(#arrow)" />
+  <path d="M680 410 L730 410" stroke="#334155" stroke-width="5" marker-end="url(#arrow)" />
+  <path d="M960 410 L1010 410" stroke="#334155" stroke-width="5" marker-end="url(#arrow)" />
+  <path d="M1310 410 L1360 410" stroke="#334155" stroke-width="5" marker-end="url(#arrow)" />
+
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#334155" />
+    </marker>
+  </defs>
+
+  <text x="800" y="760" text-anchor="middle" font-family="Georgia, serif" font-size="40" font-weight="700" fill="#0f172a">LinkedIn Automation with n8n</text>
+</svg>

@@ -28,3 +28,4 @@ This version has breaking changes — APIs, conventions, and file structure may 
 ## Session Log
 - 2026-03-31: Replaced the default Next.js starter with a senior-backend-focused portfolio, added static JSON route handlers, metadata files, and a downloadable resume asset.
 - 2026-03-31: Refactored the original one-page layout into a lighter multi-page portfolio with shared header/footer components and route-based navigation.
+- 2026-04-02: Added a safe standalone Supabase password-login test harness that only supports a single known test credential and documents usage in the README.
