@@ -29,7 +29,7 @@ Then open `http://localhost:3000`.
 
 ## Notes
 
-- Set `NEXT_PUBLIC_SITE_URL` in production to generate correct canonical and sitemap URLs.
+- On Vercel, canonical and sitemap URLs use the project's production domain automatically. After adding a custom domain, redeploy to refresh the statically generated URLs. Set `NEXT_PUBLIC_SITE_URL` to explicitly choose a different canonical URL.
 - Add new project case studies by extending `lib/portfolio-data.ts`.
 
 ## Safe Supabase auth test
