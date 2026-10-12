@@ -1,11 +1,16 @@
-import type { Metadata } from "next";
 import { Arrow } from "@/components/icons";
 import { PageIntro } from "@/components/page-intro";
 import { PageShell } from "@/components/page-shell";
 import { Reveal } from "@/components/reveal";
 import { portfolioData } from "@/lib/portfolio-data";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Experience", description: "Kushagra Rohatgi's work across backend systems, cloud delivery, and AI products.", alternates: { canonical: "/experience" } };
+export const metadata = pageMetadata({
+  title: "Experience",
+  description:
+    "See Kushagra Rohatgi's backend engineering experience across Node.js, TypeScript, PostgreSQL, Redis, Azure, and AI workflows.",
+  path: "/experience",
+});
 
 export default function ExperiencePage() {
   return (

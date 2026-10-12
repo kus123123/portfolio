@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Arrow } from "@/components/icons";
 import { PageIntro } from "@/components/page-intro";
 import { PageShell } from "@/components/page-shell";
@@ -6,8 +5,14 @@ import { ProjectPreview } from "@/components/project-preview";
 import { Reveal } from "@/components/reveal";
 import { Tag } from "@/components/tag";
 import { portfolioData } from "@/lib/portfolio-data";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Work", description: "Products, experiments, APIs, and automations built by Kushagra Rohatgi.", alternates: { canonical: "/projects" } };
+export const metadata = pageMetadata({
+  title: "Projects",
+  description:
+    "Explore Kushagra Rohatgi's projects: a file-aware chatbot, Chrome extensions, a QR contact app, n8n automation, and backend platforms.",
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (

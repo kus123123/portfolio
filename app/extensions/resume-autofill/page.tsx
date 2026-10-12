@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
+import { portfolioData } from "@/lib/portfolio-data";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Resume Autofill Privacy Policy",
   description:
-    "Privacy policy and data handling details for the Resume Autofill Chrome extension.",
-  alternates: {
-    canonical: "/extensions/resume-autofill",
-  },
-};
+    "Read how the Resume Autofill Chrome extension stores profiles, resumes, and AI settings, and how users can control their data.",
+  path: "/extensions/resume-autofill",
+});
 
 export default function ResumeAutofillPolicyPage() {
   return (
@@ -66,8 +65,11 @@ export default function ResumeAutofillPolicyPage() {
             Contact
           </p>
           <p className="mt-4 text-base leading-8 text-black/80">
-            Replace this section with your support email or contact page before
-            publishing the extension to the Chrome Web Store.
+            For privacy questions or support, email{" "}
+            <a href={`mailto:${portfolioData.person.email}`} className="underline">
+              {portfolioData.person.email}
+            </a>
+            .
           </p>
         </section>
       </section>

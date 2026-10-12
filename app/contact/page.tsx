@@ -1,10 +1,15 @@
-import type { Metadata } from "next";
 import { Arrow, Spark } from "@/components/icons";
 import { PageIntro } from "@/components/page-intro";
 import { PageShell } from "@/components/page-shell";
 import { portfolioData } from "@/lib/portfolio-data";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Contact", description: "Get in touch with Kushagra Rohatgi about full-stack development, backend systems, and collaborations.", alternates: { canonical: "/contact" } };
+export const metadata = pageMetadata({
+  title: "Contact",
+  description:
+    "Contact Kushagra Rohatgi in Noida about senior backend development, full-stack products, APIs, AI workflows, and engineering collaborations.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   const { person } = portfolioData;

@@ -29,8 +29,12 @@ Then open `http://localhost:3000`.
 
 ## Notes
 
-- On Vercel, canonical and sitemap URLs use the project's production domain automatically. After adding a custom domain, redeploy to refresh the statically generated URLs. Set `NEXT_PUBLIC_SITE_URL` to explicitly choose a different canonical URL.
+- The Vercel production environment sets `NEXT_PUBLIC_SITE_URL` to `https://portfolio.kushagraportfolio.cloud`. Keep this value aligned with the public domain so canonical, Open Graph, robots, and sitemap URLs stay consistent. Without the override, the site uses Vercel's production domain automatically.
 - Add new project case studies by extending `lib/portfolio-data.ts`.
+
+## Search indexing
+
+After a production deployment, verify the custom domain in Google Search Console and submit `https://portfolio.kushagraportfolio.cloud/sitemap.xml`. Search Console verification and indexing are controlled by the domain owner; deploying the sitemap does not guarantee that Google will index every page.
 
 ## Safe Supabase auth test
 
