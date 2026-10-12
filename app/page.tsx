@@ -4,11 +4,13 @@ import { PageShell } from "@/components/page-shell";
 import { ProjectPreview } from "@/components/project-preview";
 import { Reveal } from "@/components/reveal";
 import { StackGame } from "@/components/stack-game";
+import { blogPosts, formatBlogDate } from "@/lib/blog-data";
 import { portfolioData } from "@/lib/portfolio-data";
 
 export default function Home() {
   const { person, home, projects, experience, impactMetrics } = portfolioData;
   const featured = home.featured.flatMap((slug) => projects.filter((project) => project.slug === slug));
+  const latestPost = blogPosts[0];
 
   return (
     <PageShell>
@@ -53,6 +55,13 @@ export default function Home() {
           <div>{experience.map((item, i) => <Link href="/experience" key={item.company} className="experience-preview"><span className="project-index">0{i + 1}</span><h3>{item.company}</h3><span>{item.role}</span><span className="experience-period">{item.period}</span><Arrow diagonal /></Link>)}</div>
         </section>
       </Reveal>
+
+      {latestPost && <Reveal>
+        <section className="home-blog">
+          <div><p className="eyebrow">From the notebook</p><h2>The thinking behind the work.</h2><p>Build notes on the systems, details, and decisions that don&apos;t fit inside a project screenshot.</p><Link href="/blog" className="text-link">Explore the blog<Arrow diagonal /></Link></div>
+          <Link href={`/blog/${latestPost.slug}`} className="home-blog-card"><span className="eyebrow">Latest note <span aria-hidden="true">/</span> {formatBlogDate(latestPost.publishedAt)}</span><h3>{latestPost.title}</h3><span>Read the note <Arrow diagonal /></span></Link>
+        </section>
+      </Reveal>}
     </PageShell>
   );
 }
