@@ -16,6 +16,10 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WJXND276');`;
+const googleAnalyticsScript = `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-78PJJ62LYX');`;
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
@@ -65,6 +69,8 @@ export default function RootLayout({
     <html lang="en" className={`h-full ${display.variable} ${body.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: googleTagManagerScript }} />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-78PJJ62LYX" />
+        <script dangerouslySetInnerHTML={{ __html: googleAnalyticsScript }} />
       </head>
       <body className="min-h-full antialiased">
         <noscript>
