@@ -19,6 +19,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 ## Conventions
 - Keep styling local to `app/globals.css` plus Tailwind utility classes in reusable components.
 - Prefer extending `lib/portfolio-data.ts` for content updates instead of hardcoding strings across page files.
+- Blog posts are MDX files in `content/blog/`; register new in-post components in `components/mdx/index.tsx` and document them in `content/blog/README.md`.
 - Use only verified external links; omit uncertain profile URLs rather than shipping placeholders.
 
 ## Known Gotchas
@@ -29,3 +30,4 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - 2026-03-31: Replaced the default Next.js starter with a senior-backend-focused portfolio, added static JSON route handlers, metadata files, and a downloadable resume asset.
 - 2026-03-31: Refactored the original one-page layout into a lighter multi-page portfolio with shared header/footer components and route-based navigation.
 - 2026-04-02: Added a safe standalone Supabase password-login test harness that only supports a single known test credential and documents usage in the README.
+- 2026-10-13: Moved the blog to MDX (`content/blog/`) with code highlighting, Mermaid diagrams, media/iframe embeds, tags, RSS, TOC, prev/next, and per-post OG images; published the Node.js `availableMemory` post; upgraded Next.js to 16.3.8 for security advisories.
