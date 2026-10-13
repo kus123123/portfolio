@@ -27,7 +27,7 @@ export function CodeBlock(props: ComponentPropsWithoutRef<"pre"> & { "data-langu
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
-      <pre ref={preRef} {...props} />
+      <pre ref={preRef} tabIndex={0} role="region" aria-label="Code example" {...props} />
     </div>
   );
 }
