@@ -703,3 +703,21 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(2px, -2px);
   .reveal[data-waiting="true"] { opacity: 1; transform: none; }
   .traveling-packet { display: none; }
 }
+
+@media print {
+  body { background: white; color: black; }
+  .site-header, .site-footer, .skip-link, .blog-toc, .blog-pager, .blog-article-end, .code-block-bar { display: none; }
+  .page-shell { width: 100%; max-width: none; gap: 24px; padding-bottom: 0; }
+  .blog-article { padding-top: 0; }
+  .blog-article-layout.has-toc { display: block; }
+  .prose { max-width: none; }
+  .reveal[data-waiting="true"] { opacity: 1; transform: none; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .prose h2, .prose h3 { break-after: avoid; }
+  .prose p, .prose li { orphans: 3; widows: 3; }
+  .code-block { overflow: visible; border: 1px solid #ccc; background: white; box-shadow: none; }
+  .code-block pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .code-block code { display: block; min-width: 0; }
+  .code-block span { color: black !important; }
+  [data-rehype-pretty-code-title] { background: white; color: black; }
+}
