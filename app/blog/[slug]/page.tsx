@@ -11,6 +11,14 @@ type PostPageProps = { params: Promise<{ slug: string }> };
 
 export const dynamicParams = false;
 
+function withInlineCode(text: string) {
+  return text.split(/(`[^`]+`)/g).map((part, index) =>
+    part.startsWith("`") && part.endsWith("`")
+      ? <code key={index}>{part.slice(1, -1)}</code>
+      : part,
+  );
+}
+
 export function generateStaticParams() {
   return blogPosts.map(({ slug }) => ({ slug }));
 }
@@ -23,6 +31,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
   const path = `/blog/${post.slug}`;
   return {
     ...pageMetadata({ title: post.title, description: post.description, path }),
+    keywords: post.tags,
     openGraph: {
       title: `${post.title} | Kushagra Rohatgi`,
       description: post.description,
@@ -63,14 +72,22 @@ export default async function BlogPostPage({ params }: PostPageProps) {
         <header className="blog-article-header">
           <p className="eyebrow">{post.category} <span aria-hidden="true">/</span> {formatBlogDate(post.publishedAt)}</p>
           <h1>{post.title}</h1>
-          <p>{post.lead}</p>
+          <p>{withInlineCode(post.lead)}</p>
           <div className="blog-byline"><span className="blog-byline-mark"><Spark /></span><span>Kushagra Rohatgi<br /><small>{post.readMinutes} min read</small></span></div>
+          <div className="blog-tags" aria-label="Topics">{post.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div>
         </header>
         <div className="blog-article-body">
           {post.sections.map((section, index) => (
             <section key={section.heading}>
               <span className="blog-section-number">{String(index + 1).padStart(2, "0")}</span>
-              <div><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+              <div>
+                <h2>{section.heading}</h2>
+                {section.blocks.map((block, blockIndex) => {
+                  if (block.type === "code") return <figure className="blog-code" key={blockIndex}><figcaption>{block.filename}</figcaption><pre><code>{block.code}</code></pre></figure>;
+                  if (block.type === "link") return <p className="blog-source" key={blockIndex}><a href={block.href} target="_blank" rel="noopener noreferrer">{block.label}<Arrow diagonal /></a></p>;
+                  return <p key={blockIndex}>{withInlineCode(block.text)}</p>;
+                })}
+              </div>
             </section>
           ))}
         </div>

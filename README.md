@@ -33,7 +33,7 @@ Then open `http://localhost:3000`.
 
 - The Vercel production environment sets `NEXT_PUBLIC_SITE_URL` to `https://portfolio.kushagraportfolio.cloud`. Keep this value aligned with the public domain so canonical, Open Graph, robots, and sitemap URLs stay consistent. Without the override, the site uses Vercel's production domain automatically.
 - Add new project case studies by extending `lib/portfolio-data.ts`.
-- Add a post in `lib/blog-data.ts` with a unique slug, publication date, description, lead, and sections. The blog index, article route, metadata, and sitemap update from that entry when the next commit is deployed. Only add finished posts to this published list.
+- Add a post in `lib/blog-data.ts` with a unique slug, publication date, description, lead, tags, and sections. Section blocks can be paragraphs, code examples, or source links. Put the newest post first so the homepage teaser stays current. The blog index, article route, metadata, and sitemap update from that entry when the next commit is deployed. Only add finished posts to this published list.
 
 ## Search indexing
 
