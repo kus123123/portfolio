@@ -1,0 +1,63 @@
+---
+title: "Measure API Payloads in Bytes"
+description: "Why string length can mislead payload checks, and how to measure UTF-8 JSON bodies in Node.js."
+slug: "nodejs-buffer-byte-length"
+date: "2026-10-13"
+category: "Backend notes"
+tags: ["Node.js", "JavaScript", "APIs"]
+---
+
+A payload check can appear correct in development and become misleading when users send emoji or text in another language. A common cause is measuring a JavaScript string's length when the limit actually applies to encoded bytes.
+
+Node.js provides `Buffer.byteLength()` to measure a string in a specified encoding. For typical JSON traffic, that encoding is UTF-8.
+
+## A tiny example
+
+Save this as `demo.mjs` and run `node demo.mjs`:
+
+```js title="demo.mjs"
+import { Buffer } from 'node:buffer';
+
+const text = 'Hi 👋';
+
+console.log(text.length);                    // 5 UTF-16 code units
+console.log(Buffer.byteLength(text, 'utf8')); // 7 bytes
+```
+
+The greeting looks short, but its encoded size tells a different story. Think of a delivery box: counting the items inside does not tell you their total weight. A transport limit needs the appropriate measurement.
+
+## Measure the body you actually send
+
+Consider an illustrative backend worker that sends a notification to another service. Suppose your application sets a 1 KiB budget for the JSON body. Serialize the complete object before checking:
+
+```js title="check-payload.mjs"
+import { Buffer } from 'node:buffer';
+
+const body = JSON.stringify({ message: 'Hi 👋' });
+const bytes = Buffer.byteLength(body, 'utf8');
+const limit = 1024; // Illustrative application policy
+
+if (bytes > limit) {
+  throw new Error('JSON body exceeds the application limit');
+}
+
+console.log({ body, bytes }); // bytes: 21
+```
+
+This includes property names, quotes, braces, and the message. Measuring only the message would omit those extra bytes. If you later send this body, reuse the same serialized string so your measurement corresponds to that representation.
+
+## Everyday applications
+
+This is useful when choosing a batch size for outgoing messages, recording response-body sizes, or enforcing a byte budget on generated text. It can also help diagnose why an apparently short multilingual payload is larger than expected.
+
+These are example designs, not claims about a production system I have deployed. The 1 KiB threshold above is an application choice, not a limit imposed by Node.js.
+
+## Limits and compatibility
+
+Measure using the encoding you will actually use. The result describes that encoded body; it does not include HTTP headers, compression effects, or the full JavaScript object's memory footprint. For incoming requests, enforce limits while reading rather than only after buffering an oversized body.
+
+The method has existed since Node.js 0.1.90 and is available in Node.js 20. The runnable example uses modern ES modules.
+
+[Official Node.js documentation: Buffer.byteLength()](https://nodejs.org/api/buffer.html#static-method-bufferbytelengthstring-encoding)
+
+Documentation checked on October 13, 2026.
