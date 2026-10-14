@@ -112,7 +112,7 @@ export const portfolioData = {
       tone: "butter",
       previewKind: "screenshot",
       type: "Experimental Price Comparison App",
-      liveUrl: "http://76.13.247.66/",
+      liveUrl: "https://compareproducts.kushagraportfolio.cloud/",
       repoUrl: null,
       imageUrl: "/projects/quick-compare.png",
       imageAlt: "Quick Compare showing live Flipkart Minutes products and unavailable retailer feeds",
