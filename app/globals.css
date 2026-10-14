@@ -388,6 +388,7 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(2px, -2px);
 .code-block-bar button { padding: 5px 10px; border: 1px solid #30363d; border-radius: 5px; background: transparent; color: #c9d1d9; font: 600 11px var(--font-ui); letter-spacing: 0; text-transform: none; transition: background 150ms, border-color 150ms; }
 .code-block-bar button:hover { background: #21262d; border-color: #8b949e; }
 .code-block pre { margin: 0; padding: 18px 0; overflow-x: auto; background: transparent !important; font: 13.5px/1.75 var(--font-code); tab-size: 2; }
+.code-block pre:focus-visible { outline: 3px solid #8bb4ff; outline-offset: -3px; }
 .code-block code { display: grid; min-width: max-content; }
 .code-block [data-line] { padding: 0 20px; }
 .code-block [data-highlighted-line] { background: #2452e933; box-shadow: inset 3px 0 0 #6d8dff; }
