@@ -106,6 +106,23 @@ export const portfolioData = {
   ],
   projects: [
     {
+      name: "Quick Compare",
+      slug: "quick-compare",
+      shortDescription: "Quick-commerce prices, side by side when live feeds respond.",
+      tone: "butter",
+      previewKind: "screenshot",
+      type: "Experimental Price Comparison App",
+      liveUrl: "http://76.13.247.66/",
+      repoUrl: null,
+      imageUrl: "/projects/quick-compare.png",
+      imageAlt: "Quick Compare showing live Flipkart Minutes products and unavailable retailer feeds",
+      summary:
+        "Built and deployed a Node.js and Playwright app that searches six quick-commerce retailers by pincode and product, compares available prices and stock, and keeps partial results usable when an upstream retailer blocks requests.",
+      outcome:
+        "Deployed the prototype on a VPS with an isolated service, rate limiting, and a location lookup fallback. Retailer bot defenses currently limit live coverage, so this remains an experimental project.",
+      stack: ["Node.js", "Playwright", "JavaScript", "Nginx", "OpenStreetMap"],
+    },
+    {
       name: "QR Contact Locker",
       slug: "qr-contact-locker",
       shortDescription: "One scan. A simpler way to share a contact.",
