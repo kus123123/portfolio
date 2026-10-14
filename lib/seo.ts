@@ -19,7 +19,7 @@ export function pageMetadata({
   return {
     title,
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: path, types: { "application/rss+xml": "/blog/rss.xml" } },
     openGraph: {
       title: socialTitle,
       description,
