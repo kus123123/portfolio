@@ -6,15 +6,12 @@ import { getAllPosts, getAllTags } from "@/lib/blog";
 import { portfolioData } from "@/lib/portfolio-data";
 import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  ...pageMetadata({
-    title: "Blog",
-    description:
-      "Build notes by Kushagra Rohatgi on backend systems, Node.js, product engineering, browser tools, and practical AI workflows.",
-    path: "/blog",
-  }),
-  alternates: { canonical: "/blog", types: { "application/rss+xml": "/blog/rss.xml" } },
-};
+export const metadata = pageMetadata({
+  title: "Blog",
+  description:
+    "Build notes by Kushagra Rohatgi on backend systems, Node.js, product engineering, browser tools, and practical AI workflows.",
+  path: "/blog",
+});
 
 export default function BlogPage() {
   const posts = getAllPosts();
