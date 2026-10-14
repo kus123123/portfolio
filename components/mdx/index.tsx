@@ -91,7 +91,7 @@ function Callout({ type = "note", title, children }: { type?: keyof typeof callo
 }
 
 function Table(props: ComponentPropsWithoutRef<"table">) {
-  return <div className="mdx-table"><table {...props} /></div>;
+  return <div className="mdx-table" tabIndex={0} role="region" aria-label="Scrollable table"><table {...props} /></div>;
 }
 
 export const mdxComponents = {
