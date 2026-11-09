@@ -52,7 +52,7 @@ export default function Home() {
       <Reveal>
         <section className="home-experience">
           <div className="section-heading"><div><p className="eyebrow">Where I&apos;ve made an impact</p><h2>A few chapters.</h2></div><Link className="text-link" href="/experience">The full story<Arrow diagonal /></Link></div>
-          <div>{experience.map((item, i) => <Link href="/experience" key={item.company} className="experience-preview"><span className="project-index">0{i + 1}</span><h3>{item.company}</h3><span>{item.role}</span><span className="experience-period">{item.period}</span><Arrow diagonal /></Link>)}</div>
+          <div>{experience.map((item, i) => <Link href={`/experience#${item.slug}`} key={item.slug} className="experience-preview"><span className="project-index">0{i + 1}</span><h3>{item.company}</h3><span>{item.role}</span><span className="experience-period">{item.period}</span><Arrow diagonal /></Link>)}</div>
         </section>
       </Reveal>
 
