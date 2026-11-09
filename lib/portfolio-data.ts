@@ -281,6 +281,7 @@ export const portfolioData = {
   ],
   experience: [
     {
+      slug: "unlimits",
       company: "Unlimits",
       role: "Senior Backend Developer",
       location: "Gurugram, India",
@@ -294,6 +295,7 @@ export const portfolioData = {
       ],
     },
     {
+      slug: "factacy",
       company: "Factacy Private Limited",
       role: "Backend Developer",
       location: "Gurugram, India",
@@ -307,6 +309,7 @@ export const portfolioData = {
       ],
     },
     {
+      slug: "technocraft-solution",
       company: "Technocraft Solution",
       role: "Software Developer",
       location: "Agra, India",
