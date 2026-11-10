@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow } from "@/components/icons";
 import { PageIntro } from "@/components/page-intro";
 import { PageShell } from "@/components/page-shell";
+
+export const metadata: Metadata = {
+  title: "Page not found",
+};
 
 export default function NotFound() {
   return (
