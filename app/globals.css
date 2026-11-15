@@ -676,8 +676,6 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(2px, -2px);
   .blog-article-end p { font-size: 18px; }
   .blog-article-end .text-link { width: 100%; margin-left: 38px; }
   .blog-list-heading { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .blog-tags { flex-wrap: nowrap; overflow-x: auto; margin-inline: -4px; padding: 2px 4px 6px; scrollbar-width: none; }
-  .blog-tags a { flex: 0 0 auto; }
   .blog-tag-page { padding-top: 33px; }
   .blog-byline { flex-wrap: wrap; }
   .blog-article-tags { width: 100%; margin-left: 51px; }
