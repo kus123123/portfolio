@@ -28,8 +28,8 @@ export default function ProjectsPage() {
                 <div className="tag-list">{project.stack.map((item) => <Tag key={item} label={item} />)}</div>
                 <details className="case-details"><summary>Behind the build<span aria-hidden="true">+</span></summary><p>{project.outcome}</p></details>
                 <div className="case-links">
-                  {project.liveUrl && <a className="button button-primary button-small" href={project.liveUrl} target="_blank" rel="noreferrer">Visit project<Arrow diagonal /></a>}
-                  {project.repoUrl && <a className="text-link" href={project.repoUrl} target="_blank" rel="noreferrer">View source<Arrow diagonal /></a>}
+                  {project.liveUrl && <a className="button button-primary button-small" href={project.liveUrl} target="_blank" rel="noreferrer" aria-label={`Visit project: ${project.name}`}>Visit project<Arrow diagonal /></a>}
+                  {project.repoUrl && <a className="text-link" href={project.repoUrl} target="_blank" rel="noreferrer" aria-label={`View source for ${project.name}`}>View source<Arrow diagonal /></a>}
                 </div>
               </div>
             </article>
