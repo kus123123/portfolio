@@ -11,7 +11,7 @@ export function SiteFooter() {
         <div className="footer-bottom">
           <Link href="/" className="brand"><Spark className="brand-mark" /><span>{person.name}</span></Link>
           <span className="footer-location">Made with care. Based in {person.location}.</span>
-          <div className="footer-links"><a href={`mailto:${person.email}`}>Email<Arrow diagonal /></a><a href={person.linkedinUrl} target="_blank" rel="noreferrer">LinkedIn<Arrow diagonal /></a><a href={person.resumeUrl} download>Resume<Arrow diagonal /></a></div>
+          <div className="footer-links"><a href={`mailto:${person.email}`}>Email<Arrow diagonal /></a><a href={person.linkedinUrl} target="_blank" rel="noreferrer">LinkedIn<span className="sr-only"> (opens in a new tab)</span><Arrow diagonal /></a><a href={person.resumeUrl} download>Resume<Arrow diagonal /></a></div>
         </div>
       </div>
     </footer>
