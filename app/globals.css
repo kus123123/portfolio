@@ -716,6 +716,7 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(2px, -2px);
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .prose h2, .prose h3 { break-after: avoid; }
   .prose p, .prose li { orphans: 3; widows: 3; }
+  .prose a[href^="https://"]::after, .prose a[href^="http://"]::after { content: " (" attr(href) ")"; font-size: .85em; overflow-wrap: anywhere; }
   .code-block { overflow: visible; border: 1px solid #ccc; background: white; box-shadow: none; }
   .code-block pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; }
   .code-block code { display: block; min-width: 0; }
