@@ -363,7 +363,7 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(2px, -2px);
 .blog-pager-next { text-align: right; align-items: flex-end; }
 
 /* ---------- Blog: prose (MDX output) ---------- */
-.prose { max-width: 760px; min-width: 0; color: #303b33; font-size: 16.5px; line-height: 1.9; }
+.prose { max-width: 760px; min-width: 0; overflow-wrap: break-word; color: #303b33; font-size: 16.5px; line-height: 1.9; }
 .prose > * + * { margin-top: 22px; }
 .prose h2 { margin-top: 56px; margin-bottom: -2px; color: var(--foreground); font-size: clamp(28px, 3.3vw, 38px); scroll-margin-top: 120px; }
 .prose h3 { margin-top: 38px; margin-bottom: -6px; color: var(--foreground); font-size: 22px; scroll-margin-top: 120px; }
